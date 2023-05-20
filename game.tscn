@@ -1,0 +1,87 @@
+[gd_scene load_steps=12 format=3 uid="uid://cjxy6reu5qceo"]
+
+[ext_resource type="PackedScene" path="res://Towers/tower.tscn" id="1_2gmmp"]
+[ext_resource type="PackedScene" uid="uid://dnabq41y6n724" path="res://player.tscn" id="1_qsy5j"]
+[ext_resource type="Script" path="res://FPS Counter.gd" id="3_mee67"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_6vtdy"]
+sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+ground_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+
+[sub_resource type="Sky" id="Sky_dbdqn"]
+sky_material = SubResource("ProceduralSkyMaterial_6vtdy")
+
+[sub_resource type="Environment" id="Environment_6nwww"]
+background_mode = 2
+sky = SubResource("Sky_dbdqn")
+tonemap_mode = 2
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_o5qsg"]
+size = Vector3(100, 0.31, 100)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_rteu4"]
+albedo_color = Color(0.00392157, 0.0901961, 0, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_0eym0"]
+material = SubResource("StandardMaterial3D_rteu4")
+size = Vector3(100, 0.36, 100)
+
+[sub_resource type="Gradient" id="Gradient_l4cyu"]
+offsets = PackedFloat32Array(1)
+colors = PackedColorArray(1, 1, 1, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_dwy6r"]
+gradient = SubResource("Gradient_l4cyu")
+width = 6
+height = 6
+
+[node name="Game" type="Node3D"]
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.866025, -0.433013, 0.25, 0, 0.5, 0.866025, -0.5, 0.75, -0.433013, 0, 0, 0)
+shadow_enabled = true
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_6nwww")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
+shape = SubResource("BoxShape3D_o5qsg")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="StaticBody3D"]
+transform = Transform3D(0.998354, 0, 0, 0, 0.998354, 0, 0, 0, 0.998354, 0, 0, 0)
+mesh = SubResource("BoxMesh_0eym0")
+
+[node name="Tower" parent="." instance=ExtResource("1_2gmmp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.13267, 0.155, 4.32851)
+
+[node name="Tower2" parent="." instance=ExtResource("1_2gmmp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.13267, 0.155, -17.0596)
+
+[node name="Player" parent="." instance=ExtResource("1_qsy5j")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.17777, 0.155001, -5.85646)
+
+[node name="HUD" type="CanvasLayer" parent="."]
+
+[node name="Crosshair" type="CenterContainer" parent="HUD"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TextureRect" type="TextureRect" parent="HUD/Crosshair"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = SubResource("GradientTexture2D_dwy6r")
+
+[node name="FPS Counter" type="Label" parent="HUD"]
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -40.0
+offset_bottom = 23.0
+grow_horizontal = 0
+script = ExtResource("3_mee67")

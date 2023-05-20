@@ -1,0 +1,23 @@
+[gd_scene load_steps=4 format=3 uid="uid://cm2rxlum676rq"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_h4ins"]
+radius = 1.0
+
+[sub_resource type="SphereMesh" id="SphereMesh_4r6g3"]
+radius = 1.0
+height = 2.0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_rn6hd"]
+albedo_color = Color(0.34902, 0.34902, 0.34902, 1)
+
+[node name="Boulder" type="RigidBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 6.04719, 6.78853)
+mass = 10.0
+metadata/_edit_group_ = true
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("SphereShape3D_h4ins")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("SphereMesh_4r6g3")
+surface_material_override/0 = SubResource("StandardMaterial3D_rn6hd")

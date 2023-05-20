@@ -1,0 +1,88 @@
+[gd_scene load_steps=11 format=3]
+
+[ext_resource type="Script" path="res://Towers/tower.gd" id="1_cdfh8"]
+[ext_resource type="PackedScene" uid="uid://djarjjlhyjmsb" path="res://Towers/button.tscn" id="1_r7wqi"]
+[ext_resource type="PackedScene" uid="uid://dnqi0uyw0xn1f" path="res://Towers/catapultArm.tscn" id="3_emcuu"]
+[ext_resource type="AudioStream" uid="uid://caar85et4hjys" path="res://boop.wav" id="3_njskl"]
+[ext_resource type="PackedScene" uid="uid://cm2rxlum676rq" path="res://Towers/boulder.tscn" id="5_61nd0"]
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_nrrie"]
+height = 5.0
+radius = 2.0
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_6fb2y"]
+top_radius = 2.0
+bottom_radius = 2.0
+height = 5.0
+
+[sub_resource type="Animation" id="Animation_bbj5m"]
+resource_name = "Launch"
+length = 4.0
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:rotation:x")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0, 0, 0, 0, 0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0, -2.58255, -0.25, 0, 0.25, 0, -2.58255, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 1, 1.5, 4, 4.0001)
+}
+
+[sub_resource type="Animation" id="Animation_dq7dn"]
+length = 0.001
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:rotation:x")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_c11qd"]
+_data = {
+"Launch": SubResource("Animation_bbj5m"),
+"RESET": SubResource("Animation_dq7dn")
+}
+
+[node name="Tower" type="StaticBody3D"]
+script = ExtResource("1_cdfh8")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.5, 0)
+shape = SubResource("CylinderShape3D_nrrie")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.5, 0)
+mesh = SubResource("CylinderMesh_6fb2y")
+
+[node name="Button" parent="." instance=ExtResource("1_r7wqi")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.01219, 1.64758, 0)
+
+[node name="Button2" parent="." instance=ExtResource("1_r7wqi")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.01219, 0.982094, 0)
+sound = ExtResource("3_njskl")
+
+[node name="Catapult" parent="." instance=ExtResource("3_emcuu")]
+transform = Transform3D(0.595, 0, 0, 0, 0.595, 0, 0, 0, 0.595, 0, 5.718, 0)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Catapult"]
+libraries = {
+"": SubResource("AnimationLibrary_c11qd")
+}
+
+[node name="Boulder" parent="." instance=ExtResource("5_61nd0")]
+
+[node name="ButtonReset" type="Timer" parent="."]
+wait_time = 2.0
+one_shot = true
+
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="Button2" to="." method="_on_button_2_pressed"]
+[connection signal="animation_finished" from="Catapult/AnimationPlayer" to="." method="_on_catapult_animation_finished"]
+[connection signal="timeout" from="ButtonReset" to="." method="_on_button_reset_timeout"]
