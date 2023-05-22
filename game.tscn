@@ -9,20 +9,20 @@ interpolation_mode = 2
 offsets = PackedFloat32Array(0, 0.716475)
 colors = PackedColorArray(0.67, 0.8185, 1, 1, 0.0561, 0.0561, 0.11, 1)
 
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_y0t46"]
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_fsmk6"]
 gradient = SubResource("Gradient_tllpv")
 fill_to = Vector2(0, 0.991453)
 
 [sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_ksjhg"]
-panorama = SubResource("GradientTexture2D_y0t46")
+panorama = SubResource("GradientTexture2D_fsmk6")
 
-[sub_resource type="Sky" id="Sky_dbdqn"]
+[sub_resource type="Sky" id="Sky_4xdr7"]
 sky_material = SubResource("PanoramaSkyMaterial_ksjhg")
 
 [sub_resource type="Environment" id="Environment_6nwww"]
 background_mode = 2
 background_color = Color(0.282353, 0.282353, 0.282353, 1)
-sky = SubResource("Sky_dbdqn")
+sky = SubResource("Sky_4xdr7")
 tonemap_mode = 2
 
 [sub_resource type="Gradient" id="Gradient_l4cyu"]
@@ -148,7 +148,6 @@ text = "Time Left: "
 [node name="Menu" type="CanvasLayer" parent="."]
 process_mode = 3
 layer = 50
-visible = false
 
 [node name="ColorRect" type="ColorRect" parent="Menu"]
 anchors_preset = 15
@@ -170,7 +169,7 @@ grow_horizontal = 2
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 29
 theme_override_font_sizes/font_size = 100
-text = "Machine Operations"
+text = "Catapulter"
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -200,6 +199,53 @@ size_flags_vertical = 6
 theme_override_font_sizes/font_size = 60
 text = "Quit
 "
+
+[node name="Guide" type="Label" parent="Menu"]
+offset_left = 1363.0
+offset_top = 385.0
+offset_right = 1627.0
+offset_bottom = 803.0
+grow_horizontal = 0
+grow_vertical = 2
+theme_override_font_sizes/font_size = 25
+text = "How to play:
+
+-Click first button on tower to spawn boulder
+-Click second button to launch boulder
+-Stop baddies from reaching the end
+
+Remember to sprint
+"
+autowrap_mode = 3
+
+[node name="Label2" type="Label" parent="Menu"]
+offset_left = 227.0
+offset_top = 500.0
+offset_right = 491.0
+offset_bottom = 547.0
+grow_vertical = 2
+theme_override_font_sizes/font_size = 31
+text = "Mouse Sensitivity"
+horizontal_alignment = 1
+
+[node name="SensNum" type="Label" parent="Menu"]
+offset_left = 144.0
+offset_top = 561.0
+offset_right = 525.0
+offset_bottom = 608.0
+theme_override_font_sizes/font_size = 31
+text = "2.2"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="sens" type="HSlider" parent="Menu"]
+offset_left = 136.0
+offset_top = 621.0
+offset_right = 529.0
+offset_bottom = 637.0
+max_value = 10.0
+step = 0.1
+value = 2.2
 
 [node name="LevelSelect" type="Control" parent="Menu"]
 visible = false
@@ -232,7 +278,9 @@ offset_right = 20.0
 offset_bottom = 20.0
 grow_horizontal = 2
 grow_vertical = 2
-columns = 6
+theme_override_constants/h_separation = 40
+theme_override_constants/v_separation = 40
+columns = 3
 
 [node name="Label" type="Label" parent="Menu/LevelSelect"]
 layout_mode = 1
@@ -248,29 +296,6 @@ text = "Level Select"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Label" type="Label" parent="Menu"]
-anchors_preset = 6
-anchor_left = 1.0
-anchor_top = 0.5
-anchor_right = 1.0
-anchor_bottom = 0.5
-offset_left = -557.0
-offset_top = -155.0
-offset_right = -172.0
-offset_bottom = 281.0
-grow_horizontal = 0
-grow_vertical = 2
-theme_override_font_sizes/font_size = 25
-text = "How to play:
-
--Click first button on tower to spawn boulder
--Click second button to launch boulder
--Stop baddies from reaching the end
-
-Remember to sprint
-"
-autowrap_mode = 3
-
 [node name="DeathTimer" type="Timer" parent="."]
 process_mode = 3
 
@@ -279,5 +304,6 @@ process_mode = 3
 
 [connection signal="pressed" from="Menu/VBoxContainer/play" to="." method="_on_play_pressed"]
 [connection signal="pressed" from="Menu/VBoxContainer/quit" to="." method="_on_quit_pressed"]
+[connection signal="value_changed" from="Menu/sens" to="." method="_on_sens_value_changed"]
 [connection signal="timeout" from="DeathTimer" to="." method="_on_death_timer_timeout"]
 [connection signal="timeout" from="WinTimer" to="." method="_on_win_timer_timeout"]

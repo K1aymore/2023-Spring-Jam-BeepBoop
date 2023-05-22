@@ -45,6 +45,7 @@ shadow_mesh = SubResource("ArrayMesh_24wua")
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_qp1hh"]
 albedo_color = Color(0.819608, 0.14902, 0.14902, 1)
 albedo_texture = ExtResource("2_yeg6x")
+emission_texture = ExtResource("2_yeg6x")
 grow_amount = -0.79
 
 [sub_resource type="SphereMesh" id="SphereMesh_w7vqk"]

@@ -8,6 +8,7 @@ var levels = [
 	preload("res://Levels/level_2.tscn"),
 	preload("res://Levels/level_3.tscn"),
 	preload("res://Levels/level_4.tscn"),
+	preload("res://Levels/level_5.tscn"),
 ]
 var level: Level
 var curLevel := 0
@@ -115,3 +116,8 @@ func _on_death_timer_timeout():
 	loadMenu()
 
 
+
+
+func _on_sens_value_changed(value):
+	$Player.mouse_sens_factor = value
+	$Menu/SensNum.text = str(value)

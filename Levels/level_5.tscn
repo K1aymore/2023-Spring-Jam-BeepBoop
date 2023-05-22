@@ -1,0 +1,66 @@
+[gd_scene load_steps=6 format=3 uid="uid://71brgk7ldtdl"]
+
+[ext_resource type="PackedScene" uid="uid://nqkotre1qi2" path="res://Levels/level.tscn" id="1_2fj6x"]
+[ext_resource type="PackedScene" uid="uid://dwo7nhk0lv6lk" path="res://Towers/tower.tscn" id="2_bjbi5"]
+[ext_resource type="PackedScene" uid="uid://bdqulqtbnnps1" path="res://grid_placer.tscn" id="3_jrah2"]
+
+[sub_resource type="Curve3D" id="Curve3D_5jjre"]
+_data = {
+"points": PackedVector3Array(0, 0, 0, 0, 0, 0, 1.41715, 0, 37.7412, 0, 0, 0, 0, 0, 0, 7.30765, 0, 37.841, 0, 0, 0, 0, 0, 0, 7.60716, 0, 43.6317, 0, 0, 0, 0, 0, 0, 16.1933, 0, 43.432, 0, 0, 0, 0, 0, 0, 16.393, 0, 22.5657, 0, 0, 0, 0, 0, 0, 7.40748, 0, 22.7654, 0, 0, 0, 0, 0, 0, 7.40748, 0, 31.2517, 0, 0, 0, 0, 0, 0, 1.51699, 0, 31.3515, 0, 0, 0, 0, 0, 0, 1.21747, 0, 22.4658, 0, 0, 0, 0, 0, 0, -7.36867, 0, 22.1663, 0, 0, 0, 0, 0, 0, -7.76803, 0, 10.7847, 0, 0, 0, 0, 0, 0, 1.51699, 0, 10.1857, 0, 0, 0, 0, 0, 0, 1.71667, 0, -1.39565),
+"tilts": PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
+}
+point_count = 13
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_jbamk"]
+size = Vector3(6.25718, 11.3764, 5.75403)
+
+[node name="level_5" node_paths=PackedStringArray("enemySpawn", "path") instance=ExtResource("1_2fj6x")]
+enemySpawn = NodePath("EnemySpawn")
+path = NodePath("Path3D")
+
+[node name="EnemySpawn" type="Node3D" parent="." index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.59159, 1, 43.401)
+
+[node name="Tower" parent="." index="1" instance=ExtResource("2_bjbi5")]
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 16.6311, 0, 16.435)
+
+[node name="Tower4" parent="." index="2" instance=ExtResource("2_bjbi5")]
+transform = Transform3D(1.31134e-07, 0, 1, 0, 1, 0, -1, 0, 1.31134e-07, 22.5216, 0, 43.5911)
+
+[node name="Tower3" parent="." index="3" instance=ExtResource("2_bjbi5")]
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 1.45556, 0, 16.435)
+
+[node name="Tower2" parent="." index="4" instance=ExtResource("2_bjbi5")]
+transform = Transform3D(-4.37112e-08, 0, 1, 0, 1, 0, -1, 0, -4.37112e-08, 7.43012, 0, 10.4678)
+
+[node name="Tower6" parent="." index="5" instance=ExtResource("2_bjbi5")]
+transform = Transform3D(1.31134e-07, 0, -1, 0, 1, 0, 1, 0, 1.31134e-07, -13.6326, 0, 22.2846)
+
+[node name="Buttons" parent="Tower6" index="3"]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0)
+
+[node name="Tower7" parent="." index="6" instance=ExtResource("2_bjbi5")]
+transform = Transform3D(-1, 0, -2.62269e-07, 0, 1, 0, 2.62269e-07, 0, -1, 1.65242, 0, -10.6622)
+
+[node name="Buttons" parent="Tower7" index="3"]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0)
+
+[node name="GridMap" parent="." index="7" instance=ExtResource("3_jrah2")]
+data = {
+"cells": PackedInt32Array(65535, 0, 0, 0, 0, 0, 1, 0, 0, 1, 65535, 0, 0, 65535, 0, 65535, 65535, 0, 65535, 65534, 0, 0, 65534, 0, 1, 65534, 0, 0, 1, 0, 0, 2, 0, 0, 3, 0, 65535, 3, 0, 65534, 3, 0, 65533, 3, 0, 65533, 4, 0, 65533, 5, 0, 65533, 6, 0, 65533, 7, 0, 65534, 7, 0, 65535, 7, 0, 0, 7, 0, 0, 8, 0, 0, 9, 0, 0, 10, 0, 1, 10, 0, 2, 10, 0, 2, 9, 0, 2, 8, 0, 2, 7, 0, 3, 7, 0, 4, 7, 0, 5, 7, 0, 5, 8, 0, 5, 9, 0, 5, 10, 0, 5, 11, 0, 5, 12, 0, 5, 13, 0, 5, 14, 0, 4, 14, 0, 3, 14, 0, 2, 14, 0, 2, 13, 0, 2, 12, 0, 1, 12, 0, 0, 12, 0, 0, 13, 0, 0, 14, 0, 4, 5, 1, 5, 5, 1, 65535, 5, 1, 0, 5, 1, 0, 65532, 1, 1, 65532, 1, 2, 2, 1, 2, 3, 1, 65531, 6, 1, 65531, 7, 1, 7, 13, 1, 7, 14, 1)
+}
+
+[node name="Path3D" type="Path3D" parent="." index="8"]
+curve = SubResource("Curve3D_5jjre")
+
+[node name="End" type="Area3D" parent="." index="9"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.972034, 0, -0.972036)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="End" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.891033, 0, -0.162005)
+shape = SubResource("BoxShape3D_jbamk")
+
+[connection signal="body_entered" from="End" to="." method="_on_end_body_entered"]
+
+[editable path="Tower6"]
+[editable path="Tower7"]
