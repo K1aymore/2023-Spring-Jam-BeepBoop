@@ -1,9 +1,9 @@
 extends CharacterBody3D
 
 
-const BASE_SPEED = 5.0
+const BASE_SPEED = 7.5
 const SPRINT_BOOST = 2
-const JUMP_VELOCITY = 4.5
+const JUMP_VELOCITY = 5
 
 var mouse_sens_factor := 2.2
 
@@ -15,7 +15,11 @@ func _physics_process(delta):
 	# Add the gravity.
 	if not is_on_floor():
 		velocity.y -= gravity * delta
-
+	
+	if position.y < -5:
+		position = Vector3(0, 1, 0)
+		global_rotation = Vector3.ZERO
+	
 	# Handle Jump.
 	if Input.is_action_just_pressed("ui_accept") and is_on_floor():
 		velocity.y = JUMP_VELOCITY
@@ -31,7 +35,7 @@ func _physics_process(delta):
 	else:
 		velocity.x = move_toward(velocity.x, 0, speed/2)
 		velocity.z = move_toward(velocity.z, 0, speed/2)
-
+	
 	move_and_slide()
 
 

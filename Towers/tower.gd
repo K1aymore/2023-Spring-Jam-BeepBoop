@@ -1,9 +1,12 @@
 extends StaticBody3D
 
 var boulderScene = preload("res://Towers/boulder.tscn")
-@onready var boulderStartPos = $Boulder.position
+var boulderStartPos = Vector3(0, 4.2, 5.4)
 
-var firstButtonPressed := false
+
+var boulder: RigidBody3D = null
+
+
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -18,24 +21,20 @@ func _process(delta):
 
 
 func _on_button_pressed():
-	firstButtonPressed = true
-	$ButtonReset.start()
+	if !is_instance_valid(boulder):
+		var newBoulder = boulderScene.instantiate()
+		newBoulder.position = boulderStartPos
+		boulder = newBoulder
+		add_child(newBoulder)
 
 
 func _on_button_2_pressed():
-	if firstButtonPressed:
-		firstButtonPressed = false
-		$Catapult/AnimationPlayer.play("Launch")
+	$Catapult/AnimationPlayer.play("Launch")
 
 
 
 
-func _on_button_reset_timeout():
-	firstButtonPressed = false
-
-
-func _on_catapult_animation_finished(anim_name):
-	if anim_name == "Launch":
-		var boulder = boulderScene.instantiate()
-		boulder.position = boulderStartPos
-		add_child(boulder)
+func boulder_boost():
+	if boulder != null:
+		boulder.apply_central_impulse(boulder.linear_velocity * 30)
+		boulder = null

@@ -1,0 +1,25 @@
+[gd_scene load_steps=5 format=3 uid="uid://mgkvhjw6wt5e"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_0ajyq"]
+albedo_color = Color(0.0666667, 0.239216, 0.0784314, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_dwq7k"]
+material = SubResource("StandardMaterial3D_0ajyq")
+size = Vector3(6, 1, 6)
+
+[sub_resource type="NavigationMesh" id="NavigationMesh_uipu1"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_kqggd"]
+size = Vector3(6, 1, 6)
+
+[node name="PathBlock" type="Node3D"]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("BoxMesh_dwq7k")
+
+[node name="NavigationRegion3D" type="NavigationRegion3D" parent="MeshInstance3D"]
+navigation_mesh = SubResource("NavigationMesh_uipu1")
+
+[node name="NavSource" type="MeshInstance3D" parent="MeshInstance3D/NavigationRegion3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.105642, 0)
+mesh = SubResource("BoxMesh_kqggd")

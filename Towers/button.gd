@@ -2,14 +2,23 @@ extends StaticBody3D
 
 class_name Button3D
 
-@export var sound := preload("res://beep.wav")
+enum Sound {
+	BEEP,
+	BOOP
+}
+
+@export var sound: Sound
 
 signal pressed
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	$AudioStreamPlayer3D.stream = sound
-
+	match sound:
+		Sound.BEEP:
+			$AudioStreamPlayer3D.stream = load("res://beep.wav")
+		Sound.BOOP:
+			$AudioStreamPlayer3D.stream = load("res://boop.wav")
+	
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
