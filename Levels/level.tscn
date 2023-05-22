@@ -6,10 +6,6 @@
 script = ExtResource("1_bn5l8")
 
 [node name="Spawn Tick" type="Timer" parent="."]
-wait_time = 0.75
 autostart = true
 
-[node name="Level Time" type="Timer" parent="."]
-
 [connection signal="timeout" from="Spawn Tick" to="." method="_on_spawn_tick_timeout"]
-[connection signal="timeout" from="Level Time" to="." method="_on_level_time_timeout"]

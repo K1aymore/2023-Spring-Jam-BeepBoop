@@ -10,7 +10,6 @@ var mouse_sens_factor := 2.2
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity: float = ProjectSettings.get_setting("physics/3d/default_gravity")
 
-
 func _physics_process(delta):
 	# Add the gravity.
 	if not is_on_floor():
@@ -44,7 +43,6 @@ func _input(event):
 		turnCamera(event.relative)
 	
 	elif event is InputEventMouseButton && event.pressed:
-		Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 		var clickedObject = $Camera3D/RayCast3D.get_collider()
 		if clickedObject is Button3D:
 			clickedObject.onPress()

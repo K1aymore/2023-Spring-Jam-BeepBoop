@@ -1,0 +1,67 @@
+[gd_scene load_steps=6 format=3 uid="uid://ca74hw2liltku"]
+
+[ext_resource type="PackedScene" uid="uid://nqkotre1qi2" path="res://Levels/level.tscn" id="1_1mi07"]
+[ext_resource type="PackedScene" uid="uid://dwo7nhk0lv6lk" path="res://Towers/tower.tscn" id="2_hlque"]
+[ext_resource type="PackedScene" uid="uid://bdqulqtbnnps1" path="res://grid_placer.tscn" id="3_y2pow"]
+
+[sub_resource type="Curve3D" id="Curve3D_sdxxh"]
+_data = {
+"points": PackedVector3Array(0, 0, 0, 0, 0, 0, -28.5362, 0, -1.48259, 0, 0, 0, 0, 0, 0, -28.5362, 0, 25.4896, 0, 0, 0, 0, 0, 0, -19.6102, 0, 25.5866, 0, 0, 0, 0, 0, 0, -19.5131, 0, 28.6913, 0, 0, 0, 0, 0, 0, -13.6918, 0, 28.4973, 0, 0, 0, 0, 0, 0, -13.4978, 0, 13.8469, 0, 0, 0, 0, 0, 0, 1.44365, 0, 13.3618, 0, 0, 0, 0, 0, 0, 1.54067, 0, -1.28855),
+"tilts": PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0)
+}
+point_count = 8
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_jbamk"]
+size = Vector3(6.25718, 11.3764, 5.75403)
+
+[node name="level_3" node_paths=PackedStringArray("enemySpawn", "path") instance=ExtResource("1_1mi07")]
+enemySpawn = NodePath("EnemySpawn")
+path = NodePath("Path3D")
+
+[node name="EnemySpawn" type="Node3D" parent="." index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -16.5024, 1, -1.60395)
+
+[node name="Tower" parent="." index="1" instance=ExtResource("2_hlque")]
+transform = Transform3D(1, 0, -1.06581e-14, 0, 1, 0, 1.06581e-14, 0, 1, -28.4677, 0, 31.2102)
+
+[node name="Tower2" parent="." index="2" instance=ExtResource("2_hlque")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 7.5176, 0, 13.3002)
+
+[node name="Tower4" parent="." index="3" instance=ExtResource("2_hlque")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 1.58383, 0, -10.6519)
+
+[node name="Buttons" parent="Tower4" index="3"]
+transform = Transform3D(1, 0, 1.98418e-09, 0, 1, 0, -1.98418e-09, 0, 1, 0, 0, 0)
+
+[node name="Tower5" parent="." index="4" instance=ExtResource("2_hlque")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -10.4578, 0, -1.7489)
+
+[node name="Buttons" parent="Tower5" index="3"]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0)
+
+[node name="Tower6" parent="." index="5" instance=ExtResource("2_hlque")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -13.6471, 0, 7.39414)
+
+[node name="Buttons" parent="Tower6" index="3"]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0)
+
+[node name="GridMap" parent="." index="6" instance=ExtResource("3_y2pow")]
+data = {
+"cells": PackedInt32Array(65535, 0, 1310720, 0, 0, 1310720, 1, 0, 1310720, 1, 65535, 1310720, 0, 65535, 1310720, 65535, 65535, 1310720, 65535, 65534, 1310720, 0, 65534, 1310720, 1, 65534, 1310720, 0, 1, 1310720, 0, 2, 1310720, 0, 3, 1310720, 0, 4, 1310720, 65535, 4, 1310720, 65534, 4, 1310720, 65533, 4, 1310720, 65532, 4, 1310720, 65531, 4, 1310720, 65531, 5, 1310720, 65531, 6, 1310720, 65531, 7, 1310720, 65531, 8, 1310720, 65531, 9, 1310720, 65530, 9, 1310720, 65529, 9, 1310720, 65528, 8, 1310720, 65527, 8, 1310720, 65526, 8, 1310720, 65526, 7, 1310720, 65526, 6, 1310720, 65526, 5, 1310720, 65526, 4, 1310720, 65526, 3, 1310720, 65526, 2, 1310720, 65535, 65532, 1310721, 0, 65532, 1310721, 65526, 1, 1310720, 65526, 0, 1310720, 65526, 65535, 1310720, 65527, 65535, 1310720, 65528, 65535, 1310720, 65529, 65535, 1310720, 65532, 65535, 1310721, 65532, 0, 1310721, 2, 3, 1310721, 2, 4, 1310721, 65526, 10, 1310721, 65527, 10, 1310721, 65529, 8, 1310720, 65530, 65535, 1310720, 65531, 2, 1310721, 65532, 2, 1310721)
+}
+
+[node name="Path3D" type="Path3D" parent="." index="7"]
+curve = SubResource("Curve3D_sdxxh")
+
+[node name="End" type="Area3D" parent="." index="8"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.972034, 0, -0.972036)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="End" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.891033, 0, -0.162005)
+shape = SubResource("BoxShape3D_jbamk")
+
+[connection signal="body_entered" from="End" to="." method="_on_end_body_entered"]
+
+[editable path="Tower4"]
+[editable path="Tower5"]
+[editable path="Tower6"]

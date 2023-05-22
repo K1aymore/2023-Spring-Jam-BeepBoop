@@ -10,9 +10,16 @@ var enemyScene = preload("res://enemy.tscn")
 const MAX_HEALTH = 10
 var health := MAX_HEALTH
 
+var surviveTime = 60
+var levelTime: float
 
 signal lose
 signal win
+
+func _process(delta):
+	levelTime += delta
+	if levelTime >= surviveTime && health > 0:
+		win.emit()
 
 func _on_end_body_entered(body):
 	if body.is_in_group("enemies"):
@@ -28,7 +35,3 @@ func _on_spawn_tick_timeout():
 	enemy.path = path
 	add_child(enemy)
 
-
-func _on_level_time_timeout():
-	if health > 0:
-		win.emit()

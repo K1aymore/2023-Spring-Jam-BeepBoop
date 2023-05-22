@@ -132,9 +132,17 @@ text = "You Won!"
 horizontal_alignment = 1
 vertical_alignment = 1
 
+[node name="SurviveTime" type="Label" parent="HUD"]
+offset_left = 840.0
+offset_top = 131.0
+offset_right = 921.0
+offset_bottom = 157.0
+text = "Time Left: "
+
 [node name="Menu" type="CanvasLayer" parent="."]
 process_mode = 3
 layer = 50
+visible = false
 
 [node name="ColorRect" type="ColorRect" parent="Menu"]
 anchors_preset = 15
@@ -144,7 +152,7 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0.133333, 0.14902, 0.25098, 1)
 
-[node name="Label" type="Label" parent="Menu"]
+[node name="Title" type="Label" parent="Menu"]
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
@@ -188,6 +196,7 @@ text = "Quit
 "
 
 [node name="LevelSelect" type="Control" parent="Menu"]
+visible = false
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -233,9 +242,34 @@ text = "Level Select"
 horizontal_alignment = 1
 vertical_alignment = 1
 
+[node name="Label" type="Label" parent="Menu"]
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -557.0
+offset_top = -155.0
+offset_right = -172.0
+offset_bottom = 281.0
+grow_horizontal = 0
+grow_vertical = 2
+theme_override_font_sizes/font_size = 25
+text = "How to play:
+
+-Click first button on tower to spawn boulder
+-Click second button to launch boulder
+-Stop baddies from reaching the end
+
+Remember to sprint
+"
+autowrap_mode = 3
+
 [node name="DeathTimer" type="Timer" parent="."]
+process_mode = 3
 
 [node name="WinTimer" type="Timer" parent="."]
+process_mode = 3
 
 [connection signal="pressed" from="Menu/VBoxContainer/play" to="." method="_on_play_pressed"]
 [connection signal="pressed" from="Menu/VBoxContainer/quit" to="." method="_on_quit_pressed"]

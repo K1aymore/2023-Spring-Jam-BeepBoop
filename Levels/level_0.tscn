@@ -6,13 +6,13 @@
 
 [sub_resource type="Curve3D" id="Curve3D_ijlrf"]
 _data = {
-"points": PackedVector3Array(0, 0, 0, 0, 0, 0, -22.4684, 0, -4.25126, 0, 0, 0, 0, 0, 0, -22.4684, 0, -7.49138, 0, 0, 0, 0, 0, 0, -13.4771, 0, -7.8154, 0, 0, 0, 0, 0, 0, -13.315, 0, -19.4798, 0, 0, 0, 0, 0, 0, 4.58665, 0, -19.7229, 0, 0, 0, 0, 0, 0, 4.58665, 0, -28.4712, 0, 0, 0, 0, 0, 0, 16.3321, 0, -28.3902, 0, 0, 0, 0, 0, 0, 16.5751, 0, -16.8877, 0, 0, 0, 0, 0, 0, 13.983, 0, -16.1587, 0, 0, 0, 0, 0, 0, 13.416, 0, -1.82117, 0, 0, 0, 0, 0, 0, 2.56156, 0, -1.82117),
-"tilts": PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
+"points": PackedVector3Array(0, 0, 0, 0, 0, 0, -22.4684, 0, -4.25126, 0, 0, 0, 0, 0, 0, -22.4684, 0, -7.49138, 0, 0, 0, 0, 0, 0, -13.4771, 0, -7.8154, 0, 0, 0, 0, 0, 0, -13.315, 0, -19.4798, 0, 0, 0, 0, 0, 0, 4.58665, 0, -19.7229, 0, 0, 0, 0, 0, 0, 4.58665, 0, -28.4712, 0, 0, 0, 0, 0, 0, 19.6161, 0, -28.5001, 0, 0, 0, 0, 0, 0, 19.4706, 0, -1.94576, 0, 0, 0, 0, 0, 0, 2.56156, 0, -1.82117),
+"tilts": PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0)
 }
-point_count = 11
+point_count = 9
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_jbamk"]
-size = Vector3(4.96113, 11.3764, 5.75403)
+size = Vector3(6.25718, 11.3764, 5.75403)
 
 [node name="level_0" node_paths=PackedStringArray("enemySpawn", "path") instance=ExtResource("1_3nrff")]
 enemySpawn = NodePath("EnemySpawn")
@@ -60,7 +60,7 @@ curve = SubResource("Curve3D_ijlrf")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.972034, 0, -0.972036)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="End" index="0"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.243011, 0, -0.729026)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.891033, 0, -0.162005)
 shape = SubResource("BoxShape3D_jbamk")
 
 [connection signal="body_entered" from="End" to="." method="_on_end_body_entered"]

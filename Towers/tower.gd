@@ -36,5 +36,5 @@ func _on_button_2_pressed():
 
 func boulder_boost():
 	if boulder != null:
-		boulder.apply_central_impulse(boulder.linear_velocity * 30)
+		boulder.apply_central_impulse(boulder.linear_velocity * 40)
 		boulder = null
