@@ -1,17 +1,23 @@
-[gd_scene load_steps=11 format=3 uid="uid://cyhxpxju7s8c5"]
+[gd_scene load_steps=13 format=3 uid="uid://cyhxpxju7s8c5"]
 
 [ext_resource type="Script" path="res://game.gd" id="1_lr2lp"]
 [ext_resource type="PackedScene" uid="uid://dnabq41y6n724" path="res://player.tscn" id="1_qsy5j"]
 [ext_resource type="Script" path="res://FPS Counter.gd" id="3_mee67"]
 
-[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_6vtdy"]
-sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
-sky_curve = 0.0750003
-ground_bottom_color = Color(0.0784314, 0.0901961, 0.14902, 1)
-ground_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+[sub_resource type="Gradient" id="Gradient_tllpv"]
+interpolation_mode = 2
+offsets = PackedFloat32Array(0, 0.716475)
+colors = PackedColorArray(0.67, 0.8185, 1, 1, 0.0561, 0.0561, 0.11, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_y0t46"]
+gradient = SubResource("Gradient_tllpv")
+fill_to = Vector2(0, 0.991453)
+
+[sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_ksjhg"]
+panorama = SubResource("GradientTexture2D_y0t46")
 
 [sub_resource type="Sky" id="Sky_dbdqn"]
-sky_material = SubResource("ProceduralSkyMaterial_6vtdy")
+sky_material = SubResource("PanoramaSkyMaterial_ksjhg")
 
 [sub_resource type="Environment" id="Environment_6nwww"]
 background_mode = 2

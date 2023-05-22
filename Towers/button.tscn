@@ -10,7 +10,7 @@ material = SubResource("StandardMaterial3D_instm")
 size = Vector3(0.2, 0.2, 0.5)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_qdiag"]
-size = Vector3(0.3, 0.3, 0.6)
+size = Vector3(0.4, 0.4, 0.7)
 
 [node name="Button" type="StaticBody3D"]
 script = ExtResource("1_wipxw")
